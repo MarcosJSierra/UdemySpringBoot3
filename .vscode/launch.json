@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PrimerEjemploApplication<PRIMER-EJEMPLO>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.kurokami.PRIMEREJEMPLO.PrimerEjemploApplication",
+            "projectName": "PRIMER-EJEMPLO",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EmpleosApplication<empleos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.kurokami.EmpleosApplication",
+            "projectName": "empleos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
