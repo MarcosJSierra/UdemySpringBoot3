@@ -23,6 +23,7 @@ public class VacantesServiceImpl implements IVacanteService {
             vacante1.setSalario(8500.00);
             vacante1.setDestacado(1);
             vacante1.setImage("empresa1.png");
+            vacante1.setEstatus("creado");
 
             Vacante vacante2 = new Vacante();
             vacante2.setId(2);
@@ -31,7 +32,7 @@ public class VacantesServiceImpl implements IVacanteService {
             vacante2.setFecha(simpleDateFormat.parse("08-02-2019"));
             vacante2.setSalario(12000.00);
             vacante2.setDestacado(0);
-
+            vacante2.setEstatus("Aprobado");
             vacante2.setImage("empresa2.png");
 
             Vacante vacante3 = new Vacante();
@@ -41,6 +42,7 @@ public class VacantesServiceImpl implements IVacanteService {
                     "Empres internacional solicita Ingeniero mecánico para mantenimiento de la instalación eléctrica");
             vacante3.setFecha(simpleDateFormat.parse("10-02-2019"));
             vacante3.setSalario(10500.00);
+            vacante3.setEstatus("Eliminado");
             vacante3.setDestacado(0);
 
             Vacante vacante4 = new Vacante();
@@ -50,6 +52,7 @@ public class VacantesServiceImpl implements IVacanteService {
             vacante4.setFecha(simpleDateFormat.parse("11-02-2019"));
             vacante4.setSalario(7500.00);
             vacante4.setDestacado(1);
+            vacante4.setEstatus("Aprobado");
             vacante4.setImage("empresa3.png");
 
             lista.add(vacante1);
@@ -75,5 +78,10 @@ public class VacantesServiceImpl implements IVacanteService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void guardar(Vacante vacante){
+        this.lista.add(vacante);             
     }
 }

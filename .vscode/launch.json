@@ -19,6 +19,16 @@
             "projectName": "empleos",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EmpleosApplication<empleos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "net.itinajero.EmpleosApplication",
+            "projectName": "empleos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

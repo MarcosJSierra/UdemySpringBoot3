@@ -12,6 +12,9 @@ public class Vacante {
     private Double salario;
     private Integer destacado;
     private String image = "no-image.png";
+    private String estatus;
+    private String detalles;
+    
     
     
 
@@ -63,6 +66,18 @@ public class Vacante {
     }
     public void setImage(String image) {
         this.image = image;
+    }
+    public String getEstatus() {
+        return estatus;
+    }
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+    public String getDetalles() {
+        return detalles;
+    }
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
     }
 
     
