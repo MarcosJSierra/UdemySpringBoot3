@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.kurokami.model.Vacante;
+import org.kurokami.service.CategoriaService;
+import org.kurokami.service.ICategoriaService;
 import org.kurokami.service.IVacanteService;
+import org.kurokami.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequestMapping("/vacantes")
@@ -27,6 +31,9 @@ public class VacantesController {
 
     @Autowired
     private IVacanteService vacanteService;
+
+    @Autowired
+    private ICategoriaService categoriaService;
 
     @GetMapping("/index")
     public String mostrarIndex(Model model){
@@ -53,8 +60,8 @@ public class VacantesController {
     }
 
     @GetMapping("/create")
-    public String crear(Vacante vacante){
-        System.out.println("oie zi");
+    public String crear(Vacante vacante, Model model){
+        model.addAttribute("categorias", categoriaService.buscarTodas());
         return "vacantes/formVacante";
     }
 
@@ -74,12 +81,20 @@ public class VacantesController {
     //     return "vacantes/listVacantes";
     // }
      @PostMapping("/save")
-    public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes){
+    public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multipartFile){
         if(result.hasErrors()){
             for(ObjectError error: result.getAllErrors()){
                 System.out.println("Ocurrio un error: " + error.getDefaultMessage());
             }
             return "vacantes/formVacante";
+        }
+
+        if(!multipartFile.isEmpty()){
+            String ruta = "/home/marcos/Documents/Cursos/udemy/SpringBoot3RestAPI/imagenes/";
+            String nombreImagen =  Utileria.guardarArchivo(multipartFile, ruta);
+            if(nombreImagen != null){
+                vacante.setImage(nombreImagen);
+            }
         }
         
         vacanteService.guardar(vacante);
